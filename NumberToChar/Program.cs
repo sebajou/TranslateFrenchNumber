@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace NumberToChar
 {
@@ -25,31 +21,23 @@ namespace NumberToChar
             string test13 = ToChar(931);
         }
 
-        public static string Reverse(string s)
-        {
-            char[] charArray = s.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
-
-
 
         static string ToChar(int number)
-        { 
-            string numberStr = Reverse(number.ToString());
+        {
+            string numberStr = number.Reverse();
             string numberChar = string.Empty;
 
             if (numberStr.Length == 1)
             {
-                return UnityToChar(number);
+                return FrenchNumbers.UnityToChar(number);
             }
 
             for (int i = 0; i < numberStr.Length; i++)
             {
                 if ((i + 1) % 2 == 0)
                 {
-                    int unity = int.Parse(new string(new[] { numberStr.ElementAt(i - 1) }));
-                    int ten = int.Parse(new string(new[] { numberStr.ElementAt(i) }));
+                    int unity = numberStr.ElementAt(i - 1).ToInt();
+                    int ten = numberStr.ElementAt(i).ToInt();
                     numberChar = TenUnityToChar(ten, unity) + numberChar;
                 }
 
@@ -63,14 +51,14 @@ namespace NumberToChar
                     }
                     else
                     {
-                        numberChar = $"{UnityToChar(hundred)}-cent" + (string.IsNullOrEmpty(numberChar) ? numberChar : $"-{numberChar}");
+                        numberChar = $"{FrenchNumbers.UnityToChar(hundred)}-cent" + (string.IsNullOrEmpty(numberChar) ? numberChar : $"-{numberChar}");
                     }
                 }
             }
 
             return numberChar;
         }
-        
+
         static string TenUnityToChar(int ten, int unity)
         {
             if (unity == 0 && ten == 0)
@@ -89,125 +77,43 @@ namespace NumberToChar
             {
                 if (unity == 7)
                 {
-                    return $"{TenToChar(ten)} et {ZeroToTwentyToChar(ten, unity)}";
+                    return $"{FrenchNumbers.TenToChar(ten)} et {ZeroToTwentyToChar(ten, unity)}";
                 }
                 if (unity > 7)
                 {
-                    return $"{TenToChar(ten)}-{ZeroToTwentyToChar(ten, unity)}";
+                    return $"{FrenchNumbers.TenToChar(ten)}-{ZeroToTwentyToChar(ten, unity)}";
                 }
-                return $"{TenToChar(ten)} et un";
+                return $"{FrenchNumbers.TenToChar(ten)} et un";
             }
 
             if (unity == 0)
             {
-                return TenToChar(ten);
+                return FrenchNumbers.TenToChar(ten);
             }
 
             if (ten > 6)
             {
-                return $"{TenToChar(ten - (ten % 2 == 0 ? 0 : 1))}-{ZeroToTwentyToChar(ten % 2 == 0 ? 0 : 1, unity)}";
+                return $"{FrenchNumbers.TenToChar(ten - (ten % 2 == 0 ? 0 : 1))}-{ZeroToTwentyToChar(ten % 2 == 0 ? 0 : 1, unity)}";
             }
-            return $"{TenToChar(ten)}-{UnityToChar(unity)}";
+            return $"{FrenchNumbers.TenToChar(ten)}-{FrenchNumbers.UnityToChar(unity)}";
         }
 
         static string ZeroToTwentyToChar(int ten, int unity)
         {
             if (ten == 0)
             {
-                return UnityToChar(unity);
+                return FrenchNumbers.UnityToChar(unity);
             }
 
             if (ten == 1)
             {
                 if (unity > 6)
                 {
-                    return $"dix-{UnityToChar(unity)}";
+                    return $"dix-{FrenchNumbers.UnityToChar(unity)}";
                 }
-                return TenToFifteenToChar(unity);
+                return FrenchNumbers.TenToFifteenToChar(unity);
             }
             return null;
         }
-
-        static string TenToFifteenToChar(int unity)
-        {
-            switch (unity)
-            {
-                case 0:
-                    return "dix";
-                case 1:
-                    return "onze";
-                case 2:
-                    return "douze";
-                case 3:
-                    return "treize";
-                case 4:
-                    return "quatorze";
-                case 5:
-                    return "quinze";
-                case 6:
-                    return "seize";
-                default:
-                    return "ERROR";
-            }
-        }
-
-        static string TenToChar(int ten)
-        {
-            switch (ten)
-            {
-                case 0:
-                    return "zero";
-                case 1:
-                    return "dix";
-                case 2:
-                    return "vingt";
-                case 3:
-                    return "trente";
-                case 4:
-                    return "quarante";
-                case 5:
-                    return "cinquante";
-                case 6:
-                    return "soixante";
-                case 7:
-                    return "soixante-dix";
-                case 8:
-                    return "quatre-vingt";
-                case 9:
-                    return "quatre-vingt-dix";
-                default:
-                    return "ERROR";
-            }
-        }
-
-        static string UnityToChar(int unity)
-        {
-            switch (unity)
-            {
-                case 0:
-                    return "zero";
-                case 1:
-                    return "un";
-                case 2:
-                    return "deux";
-                case 3:
-                    return "trois";
-                case 4:
-                    return "quatre";
-                case 5:
-                    return "cinq";
-                case 6:
-                    return "six";
-                case 7:
-                    return "sept";
-                case 8:
-                    return "huit";
-                case 9:
-                    return "neuf";
-                default:
-                    return "ERROR";
-            }
-        }
-
     }
 }
