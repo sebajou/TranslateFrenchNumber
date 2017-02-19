@@ -12,6 +12,7 @@ namespace NumberToChar
         {
             try
             {
+
                 return int.Parse(new string(new[] { character }));
             }
             catch (InvalidCastException castException)

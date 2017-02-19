@@ -7,6 +7,7 @@ namespace NumberToChar
     {
         static void Main(string[] args)
         {
+            // ligne de test
             string test1 = ToChar(110);
             string test2 = ToChar(0);
             string test3 = ToChar(1);
