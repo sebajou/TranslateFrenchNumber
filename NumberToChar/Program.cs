@@ -6,22 +6,7 @@ namespace NumberToChar
     class Program
     {
         static void Main(string[] args)
-        {
-            // ligne de test
-            string test1 = ToChar(110);
-            string test2 = ToChar(0);
-            string test3 = ToChar(1);
-            string test4 = ToChar(10);
-            string test5 = ToChar(9);
-            string test6 = ToChar(100);
-            string test7 = ToChar(101);
-            string test8 = ToChar(999);
-            string test9 = ToChar(342);
-            string test10 = ToChar(700);
-            string test11 = ToChar(90);
-            string test12 = ToChar(340);
-            string test13 = ToChar(931);
-
+        { 
             Console.WriteLine("Saisisez le nombre entre 0 et 999 à convertir en lettre svp ce serai gentil");
             string saisie = Console.ReadLine();
 
@@ -36,6 +21,7 @@ namespace NumberToChar
                 Console.WriteLine("Vous n'avez pas rentrer un nombre et vous le devriez");
             }
 
+            Main(null);
         }
 
 
