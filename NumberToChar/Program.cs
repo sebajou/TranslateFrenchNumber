@@ -21,7 +21,7 @@ namespace NumberToChar
             string test12 = ToChar(340);
             string test13 = ToChar(931);
 
-            Console.WriteLine("Saisisez le nombre entre 0 et 999 à convertir en lettre");
+            Console.WriteLine("Saisisez le nombre entre 0 et 999 à convertir en lettre svp");
             string saisie = Console.ReadLine();
 
             int convert;
