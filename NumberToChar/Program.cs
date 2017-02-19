@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace NumberToChar
 {
@@ -19,6 +20,21 @@ namespace NumberToChar
             string test11 = ToChar(90);
             string test12 = ToChar(340);
             string test13 = ToChar(931);
+
+            Console.WriteLine("Saisisez le nombre entre 0 et 999 à convertir en lettre");
+            string saisie = Console.ReadLine();
+
+            int convert;
+            if (int.TryParse(saisie, out convert))
+            {
+                string enLettre = ToChar(convert);
+                Console.WriteLine("Nombre en lettre : " + enLettre);
+            }
+            else
+            {
+                Console.WriteLine("Vous n'avez pas rentrer un nombre et vous le devriez");
+            }
+
         }
 
 
